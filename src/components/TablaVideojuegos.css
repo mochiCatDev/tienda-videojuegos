@@ -22,13 +22,6 @@ table {
   overflow: hidden;
 }
 
-th,
-td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid var(--base);
-}
-
 th {
   background-color: var(--lavender);
   color: var(--base);
@@ -47,24 +40,20 @@ th {
   height: 100%;
 }
 
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--base);
+  white-space: nowrap;
+}
+
 @media (max-width: 600px) {
-  thead {
-    display: none;
+  .tabla-container {
+    overflow-x: auto;
+    width: 100%;
   }
-  tr {
-    display: block;
-    margin-bottom: 10px;
-    background: var(--surface0);
-    border-radius: 8px;
-  }
-  td {
-    display: block;
-    text-align: right;
-    border: none;
-  }
-  td::before {
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
+
+  table {
+    width: 800px;
   }
 }
