@@ -8,14 +8,17 @@ export const TablaVideojuegos = ({ juegos }) => {
           <tr><th>Título</th><th>Género</th><th>Plataforma</th><th>Progreso</th></tr>
         </thead>
         <tbody>
-          {juegos.map(j => (
+          {juegos.map((j) => (
             <tr key={j.id}>
-              <td>{j.titulo}</td>
-              <td>{j.genero}</td>
-              <td>{j.plataforma}</td>
-              <td>
+              <td data-label="Título">{j.titulo}</td>
+              <td data-label="Género">{j.genero}</td>
+              <td data-label="Plataforma">{j.plataforma}</td>
+              <td data-label="Progreso">
                 <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: `${j.progreso * 100}%` }}></div>
+                  <div
+                    className="progress-fill"
+                    style={{ width: `${j.progreso * 100}%` }}
+                  ></div>
                 </div>
               </td>
             </tr>
