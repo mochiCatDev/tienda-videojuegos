@@ -21,3 +21,14 @@ h1 {
   margin-bottom: 2rem;
   color: #b4befe;
 }
+
+@media (max-width: 800px) {
+  #root {
+    min-width: 100%;
+    padding: 5px;
+  }
+
+  h1 {
+    margin: 40px 0 10px 0;
+  }
+}

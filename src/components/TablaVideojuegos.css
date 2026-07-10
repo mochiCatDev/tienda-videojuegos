@@ -25,11 +25,19 @@ table {
 th {
   background-color: var(--lavender);
   color: var(--base);
+  padding: 12px 15px;
+  text-align: left;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--base);
 }
 
 .progress-bar {
   background: var(--base);
   width: 100%;
+  min-width: 100px;
   height: 12px;
   border-radius: 6px;
   overflow: hidden;
@@ -40,20 +48,72 @@ th {
   height: 100%;
 }
 
-th, td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid var(--base);
-  white-space: nowrap;
+.mobile-img-container {
+  display: none;
 }
 
-@media (max-width: 600px) {
-  .tabla-container {
-    overflow-x: auto;
-    width: 100%;
+/* --- Diseño Responsivo --- */
+@media (max-width: 800px) {
+  table {
+    background-color: transparent;
   }
 
-  table {
-    width: 800px;
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 1.5rem;
+    background-color: var(--surface0);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid var(--base);
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--base);
+    padding: 10px 0;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: var(--lavender);
+  }
+
+  .progress-bar {
+    width: 50%;
+    height: 20px;
+  }
+
+  .mobile-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0px;
+    border: 2px solid var(--base);
+    border-radius: 12px;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .mobile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.2) brightness(0.9);
   }
 }

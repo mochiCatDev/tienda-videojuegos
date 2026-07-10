@@ -1,13 +1,14 @@
 export const data = [
   {
     id: 1,
-    titulo: 'The Legend of Zelda: Breath of the Wild',
+    titulo: 'The Legend of Zelda',
     genero: 'Aventura',
     plataforma: 'Nintendo Switch',
     lanzamiento: 2017,
     precio: 59.99,
     disponible: true,
-    progreso: 0.85
+    progreso: 0.85,
+    img: '../../public/image/the-legend-of-zelda-breath-of-the-wild-portada.webp'
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ export const data = [
     lanzamiento: 2022,
     precio: 59.99,
     disponible: true,
-    progreso: 0.40
+    progreso: 0.40,
+    img: '../../public/image/elden-ring-portada.jpg'
   },
   {
     id: 3,
@@ -27,7 +29,8 @@ export const data = [
     lanzamiento: 2020,
     precio: 49.99,
     disponible: true,
-    progreso: 1.00
+    progreso: 1.00,
+    img: '../../public/image/cyberpunk-2077-portada.jfif'
   },
   {
     id: 4,
@@ -37,7 +40,8 @@ export const data = [
     lanzamiento: 2017,
     precio: 14.99,
     disponible: true,
-    progreso: 0.15
+    progreso: 0.15,
+    img: '../../public/image/hollow-knight-portada.webp'
   },
   {
     id: 5,
@@ -47,7 +51,8 @@ export const data = [
     lanzamiento: 2017,
     precio: 59.99,
     disponible: false,
-    progreso: 0.00
+    progreso: 0.00,
+    img: '../../public/image/super-mario-odyssey-portada.jpg'
   },
   {
     id: 6,
@@ -57,7 +62,8 @@ export const data = [
     lanzamiento: 2018,
     precio: 39.99,
     disponible: true,
-    progreso: 0.62
+    progreso: 0.62,
+    img: '../../public/image/red-dead-redemption-2-portada.avif'
   },
   {
     id: 7,
@@ -67,17 +73,19 @@ export const data = [
     lanzamiento: 2022,
     precio: 69.99,
     disponible: true,
-    progreso: 0.95
+    progreso: 0.95,
+    img: '../../public/image/god-of-war-ragnarok-portada.jpg'
   },
   {
     id: 8,
     titulo: 'Stardew Valley',
     genero: 'Simulación',
-    plataforma: 'PC',
+    plataforma: 'PC, Móvil',
     lanzamiento: 2016,
     precio: 14.99,
     disponible: true,
-    progreso: 0.35
+    progreso: 0.35,
+    img: '../../public/image/stardew-valley-portada.jfif'
   },
   {
     id: 9,
@@ -87,7 +95,8 @@ export const data = [
     lanzamiento: 2020,
     precio: 59.99,
     disponible: true,
-    progreso: 0.50
+    progreso: 0.50,
+    img: '../../public/image/animal-crossing-new-horizons-portada.webp'
   },
   {
     id: 10,
@@ -97,6 +106,7 @@ export const data = [
     lanzamiento: 2023,
     precio: 59.99,
     disponible: true,
-    progreso: 0.10
+    progreso: 0.10,
+    img: '../../public/image/baldurs-gate-3.avif'
   }
 ];
