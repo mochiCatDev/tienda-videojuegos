@@ -1,6 +1,9 @@
 import "./TablaVideojuegos.css";
+import { useNavigate } from "react-router-dom";
 
 export const TablaVideojuegos = ({ juegos }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="tabla-container">
       <table>
@@ -13,6 +16,7 @@ export const TablaVideojuegos = ({ juegos }) => {
             <th>Precio</th>
             <th>Disponible</th>
             <th>Progreso</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +35,16 @@ export const TablaVideojuegos = ({ juegos }) => {
                     style={{ width: `${j.progreso * 100}%` }}
                   />
                 </div>
+              </td>
+              <td>
+                <button
+                  className="btn-edit"
+                  onClick={() => navigate("/editar", { state: { juego: j } })}
+                >Editar</button>
+                <button
+                  className="btn-delete"
+                  onClick={() => onEliminar(j.id)}
+                >Eliminar</button>
               </td>
               <td className="mobile-img-container">
                 <img src={j.img} alt={j.titulo} className="mobile-img" />

@@ -52,6 +52,41 @@ td {
   display: none;
 }
 
+.acciones-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit, .btn-delete {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-edit {
+  background-color: #f9e2af;
+  color: #1e1e2e;
+}
+
+.btn-edit:hover {
+  background-color: #f5c2e7;
+  transform: scale(1.05);
+}
+
+.btn-delete {
+  background-color: #f38ba8;
+  color: #1e1e2e;
+}
+
+.btn-delete:hover {
+  background-color: #e64553;
+  transform: scale(1.05);
+}
+
 /* --- Diseño Responsivo --- */
 @media (max-width: 800px) {
   table {
@@ -115,5 +150,10 @@ td {
     height: 100%;
     object-fit: cover;
     filter: contrast(1.2) brightness(0.9);
+  }
+
+  .acciones-cell {
+    justify-content: flex-end;
+    width: 100%;
   }
 }
