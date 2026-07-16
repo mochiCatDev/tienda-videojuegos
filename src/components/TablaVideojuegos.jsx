@@ -1,7 +1,7 @@
 import "./TablaVideojuegos.css";
 import { useNavigate } from "react-router-dom";
 
-export const TablaVideojuegos = ({ juegos }) => {
+export const TablaVideojuegos = ({ juegos, onEliminar }) => {
   const navigate = useNavigate();
 
   return (
@@ -36,15 +36,16 @@ export const TablaVideojuegos = ({ juegos }) => {
                   />
                 </div>
               </td>
-              <td>
+              <td className="acciones-cell">
                 <button
                   className="btn-edit"
                   onClick={() => navigate("/editar", { state: { juego: j } })}
-                >Editar</button>
-                <button
-                  className="btn-delete"
-                  onClick={() => onEliminar(j.id)}
-                >Eliminar</button>
+                >
+                  Editar
+                </button>
+                <button className="btn-delete" onClick={() => onEliminar(j.id)}>
+                  Eliminar
+                </button>
               </td>
               <td className="mobile-img-container">
                 <img src={j.img} alt={j.titulo} className="mobile-img" />
