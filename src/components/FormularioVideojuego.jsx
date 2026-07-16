@@ -33,6 +33,20 @@ export const FormularioVideojuego = ({ onGuardar }) => {
     });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormulario({
+          ...formulario,
+          img: reader.result
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const nuevoJuego = {
@@ -91,6 +105,35 @@ export const FormularioVideojuego = ({ onGuardar }) => {
               required
             />
           </div>
+        </div>
+
+        <div className="form-group">
+          <label>Progreso del Juego ({Math.round(formulario.progreso * 100)}%):</label>
+          <input
+            type="range"
+            name="progreso"
+            min="0"
+            max="1"
+            step="0.01"
+            value={formulario.progreso}
+            onChange={handleChange}
+            className="slider-progreso"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Imagen del Videojuego (Subir desde Equipo):</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="file-input"
+          />
+          {formulario.img && (
+            <div className="preview-container">
+              <img src={formulario.img} alt="Vista previa" className="image-preview" />
+            </div>
+          )}
         </div>
 
         <div className="form-group checkbox-group">
