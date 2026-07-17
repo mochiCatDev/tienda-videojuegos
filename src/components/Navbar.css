@@ -45,3 +45,26 @@
   color: var(--base);
   opacity: 0.9;
 }
+
+/* --- Diseño Responsivo --- */
+@media (max-width: 800px) {
+  .navbar {
+    padding: 1rem 0.8rem;
+    gap: 1rem;
+  }
+
+  .navbar-menu {
+    gap: 0.8rem;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+  }
+
+  .btn-nuevo {
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    white-space: nowrap;    
+    flex-shrink: 0;         
+  }
+}
