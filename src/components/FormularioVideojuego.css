@@ -27,6 +27,7 @@
 }
 
 .form-group.row {
+  display: flex;
   flex-direction: row;
   gap: 1rem;
 }
@@ -45,17 +46,27 @@ label {
 
 input[type="text"],
 input[type="number"],
-select {
+input[type="date"],
+select,
+textarea {
   padding: 0.8rem;
   border-radius: 8px;
   border: 1px solid var(--base);
   background-color: var(--base);
   color: var(--text);
   font-size: 1rem;
+  font-family: inherit;
+  width: 100%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(50%) saturate(200%) hue-rotate(200deg);
+  cursor: pointer;
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
   outline: 2px solid var(--lavender);
 }
 
@@ -135,24 +146,24 @@ textarea.input-error {
   background-color: rgba(243, 139, 168, 0.05);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
+@media (max-width: 800px) {
+  .formulario-container {
+    padding: 1.2rem;
+    margin: 0 10px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .form-group.row {
+    flex-direction: column;
+    gap: 1.5rem;
   }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes zoomInForm {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
