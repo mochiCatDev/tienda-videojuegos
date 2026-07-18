@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { TablaVideojuegos } from "./components/TablaVideojuegos";
@@ -8,7 +8,14 @@ import { data } from "./data/videojuegos";
 import "./App.css";
 
 function App() {
-  const [juegos, setJuegos] = useState(data);
+  const [juegos, setJuegos] = useState(() => {
+    const datosGuardados = localStorage.getItem("lista_videojuegos");
+    return datosGuardados ? JSON.parse(datosGuardados) : data;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("lista_videojuegos", JSON.stringify(juegos));
+  }, [juegos]);
 
   const agregarVideojuego = (nuevoJuego) => {
     setJuegos([...juegos, nuevoJuego]);
