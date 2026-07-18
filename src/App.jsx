@@ -4,6 +4,7 @@ import { Navbar } from "./components/Navbar";
 import { TablaVideojuegos } from "./components/TablaVideojuegos";
 import { FormularioVideojuego } from "./components/FormularioVideojuego";
 import { PaginaNoEncontrada } from "./components/PaginaNoEncontrada";
+import { Toast } from "./components/Toast";
 import { data } from "./data/videojuegos";
 import "./App.css";
 
@@ -13,12 +14,23 @@ function App() {
     return datosGuardados ? JSON.parse(datosGuardados) : data;
   });
 
+  const [toast, setToast] = useState({ visible: false, mensaje: "", tipo: "success" });
+
   useEffect(() => {
     localStorage.setItem("lista_videojuegos", JSON.stringify(juegos));
   }, [juegos]);
 
+  const lanzarToast = (mensaje, tipo = "success") => {
+    setToast({ visible: true, mensaje: mensaje, tipo })
+  }
+
+  const cerrarToast = () => {
+    setToast({ ...toast, visible: false });
+  };
+
   const agregarVideojuego = (nuevoJuego) => {
     setJuegos([...juegos, nuevoJuego]);
+    lanzarToast(`¡"${nuevoJuego.titulo}" registrado con éxito!`, "success");
   };
 
   const editarVideojuego = (juegoEditado) => {
@@ -26,11 +38,14 @@ function App() {
       j.id === juegoEditado.id ? juegoEditado : j
     );
     setJuegos(nuevaLista);
+    lanzarToast(`¡"${juegoEditado.titulo}" actualizado correctamente!`, "success");
   };
 
   const eliminarVideojuego = (id) => {
+    const juegoEliminado = juegos.find(j => j.id === id);
     const nuevaLista = juegos.filter((j) => j.id !== id);
     setJuegos(nuevaLista);
+    lanzarToast(`¡"${juegoEliminado?.titulo || 'Videojuego'}" eliminado del sistema!`, "danger");
   };
 
   const procesarFormulario = (juego) => {
@@ -46,6 +61,13 @@ function App() {
     <BrowserRouter>
       <div>
         <Navbar />
+        {toast.visible && (
+          <Toast 
+            mensaje={toast.mensaje} 
+            tipo={toast.tipo} 
+            onCerrar={cerrarToast} 
+          />
+        )}
         <Routes>
           <Route
             path="/"
