@@ -16,8 +16,13 @@ export const FormularioVideojuego = ({ onGuardar }) => {
     precio: 0,
     disponible: true,
     progreso: 0,
-    img: ""
+    img: "",
+    fechaLanzamiento: "",
+    sinopsis: "",
+    calificacion: ""
   });
+
+  const [errores, setErrores] = useState({});
 
   useEffect(() => {
     if (juegoAEditar) {
@@ -31,6 +36,13 @@ export const FormularioVideojuego = ({ onGuardar }) => {
       ...formulario,
       [name]: type === "checkbox" ? checked : type === "number" ? Number(value) : value
     });
+
+    if (errores[name]) {
+      setErrores({
+        ...errores,
+        [name]: ""
+      });
+    }
   };
 
   const handleFileChange = (e) => {
@@ -47,8 +59,39 @@ export const FormularioVideojuego = ({ onGuardar }) => {
     }
   };
 
+  const validarFormulario = () => {
+    const erroresActivos = {};
+
+    if (!formulario.titulo || formulario.titulo.trim() === "") {
+      erroresActivos.titulo = "El nombre del videojuego es obligatorio y no puede contener solo espacios.";
+    }
+
+    if (!formulario.calificacion || formulario.calificacion < 1 || formulario.calificacion > 100) {
+      erroresActivos.calificacion = "La calificación debe ser un valor numérico estrictamente entre 1 y 100.";
+    }
+
+    if (!formulario.sinopsis || formulario.sinopsis.trim().length < 10) {
+      erroresActivos.sinopsis = "La sinopsis debe contener al menos 10 caracteres.";
+    } else if (formulario.sinopsis.length > 250) {
+      erroresActivos.sinopsis = "La sinopsis no puede exceder los 250 caracteres.";
+    }
+
+    if (!formulario.fechaLanzamiento) {
+      erroresActivos.fechaLanzamiento = "Debe seleccionar una fecha de lanzamiento válida.";
+    }
+
+    return erroresActivos;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const erroresActivos = validarFormulario();
+
+    if (Object.keys(erroresActivos).length > 0) {
+      setErrores(erroresActivos);
+      return;
+    }
+
     const nuevoJuego = {
       ...formulario,
       id: formulario.id || Date.now()
@@ -60,7 +103,7 @@ export const FormularioVideojuego = ({ onGuardar }) => {
   return (
     <div className="formulario-container">
       <h2>{juegoAEditar ? "Editar Videojuego" : "Registrar Nuevo Videojuego"}</h2>
-      <form onSubmit={handleSubmit} className="formulario">
+      <form onSubmit={handleSubmit} className="formulario">        
         <div className="form-group">
           <label>Título:</label>
           <input
@@ -68,8 +111,9 @@ export const FormularioVideojuego = ({ onGuardar }) => {
             name="titulo"
             value={formulario.titulo}
             onChange={handleChange}
-            required
+            className={errores.titulo ? "input-error" : ""}
           />
+          {errores.titulo && <span className="error-mensaje">{errores.titulo}</span>}
         </div>
         
         <div className="form-group">
@@ -105,6 +149,47 @@ export const FormularioVideojuego = ({ onGuardar }) => {
               required
             />
           </div>
+        </div>
+
+        <div className="form-group row">
+          <div>
+            <label>Fecha de Lanzamiento:</label>
+            <input
+              type="date"
+              name="fechaLanzamiento"
+              value={formulario.fechaLanzamiento}
+              onChange={handleChange}
+              max={new Date().toISOString().split("T")[0]}
+              className={errores.fechaLanzamiento ? "input-error" : ""}
+            />
+            {errores.fechaLanzamiento && <span className="error-mensaje">{errores.fechaLanzamiento}</span>}
+          </div>
+
+          <div>
+            <label>Calificación de la Crítica (1-100):</label>
+            <input
+              type="number"
+              name="calificacion"
+              value={formulario.calificacion}
+              onChange={handleChange}
+              placeholder="Ej: 85"
+              className={errores.calificacion ? "input-error" : ""}
+            />
+            {errores.calificacion && <span className="error-mensaje">{errores.calificacion}</span>}
+          </div>
+        </div>
+        
+        <div className="form-group">
+          <label>Sinopsis / Descripción:</label>
+          <textarea
+            name="sinopsis"
+            value={formulario.sinopsis}
+            onChange={handleChange}
+            placeholder="Escribe una breve reseña del videojuego (mínimo 10 caracteres)..."
+            rows="4"
+            className={errores.sinopsis ? "input-error" : ""}
+          />
+          {errores.sinopsis && <span className="error-mensaje">{errores.sinopsis}</span>}
         </div>
 
         <div className="form-group">

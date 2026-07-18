@@ -118,3 +118,29 @@ select:focus {
 .btn-submit:hover {
   opacity: 0.9;
 }
+
+.error-mensaje {
+  color: #f38ba8;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.2rem;
+  display: block;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+input.input-error,
+textarea.input-error {
+  border: 1.5px solid #f38ba8 !important;
+  background-color: rgba(243, 139, 168, 0.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
